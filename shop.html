@@ -15,8 +15,7 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="index.html" aria-label="Brush and Soul Studio home">
-      Brush &amp; Soul
-      <small>studio · handmade art</small>
+      <img src="assets/logo.jpg" alt="" class="brand-mark"><span class="brand-txt">Brush &amp; Soul<small>studio · handmade art</small></span>
     </a>
     <nav aria-label="Primary">
       <ul class="menu">
@@ -125,22 +124,22 @@
   /* Seeded from Caroline's live catalog. Real images + full catalog drop in
      when products are published from Printify; originals are added in admin. */
   const ITEMS = [
-    {n:'Persian Hospitality', p:600, c:'originals', col:'wanderlust'},
-    {n:'Natures Legacy',       p:700, c:'originals', col:'botanicals'},
-    {n:'Moonlit Journey',      p:41,  c:'prints',    col:'mystical'},
-    {n:'Girl of Fire',         p:38,  c:'prints',    col:'mystical'},
-    {n:'The Fool \u2014 Tarot',p:26,  c:'prints',    col:'tarot'},
-    {n:'Into the Unseen',      p:38,  c:'prints',    col:'mystical'},
-    {n:'City of Dreams',       p:38,  c:'prints',    col:'wanderlust'},
-    {n:'Legacy of Persia',     p:38,  c:'prints',    col:'wanderlust'},
-    {n:'Dance of Freedom',     p:22,  c:'prints',    col:'mystical'},
-    {n:'Roaring Spirit',       p:48,  c:'prints',    col:'mystical'},
-    {n:'The Foundation',       p:28,  c:'prints',    col:'botanicals'},
-    {n:'Moonlit Nomad',        p:28,  c:'prints',    col:'wanderlust'},
-    {n:'Girl of Fire \u2014 Phone Case', p:32, c:'products', col:'mystical',   t:'phone-case'},
-    {n:'Moonlit Journey \u2014 Mug',     p:24, c:'products', col:'mystical',   t:'mug'},
-    {n:'Legacy of Persia \u2014 Tote',   p:28, c:'products', col:'wanderlust', t:'tote'},
-    {n:'Roaring Spirit \u2014 Tee',      p:34, c:'products', col:'mystical',   t:'apparel'}
+    {n:'Persian Hospitality', p:600, c:'originals', col:'wanderlust',  img:'assets/persian-hospitality.jpg'},
+    {n:'Natures Legacy',       p:700, c:'originals', col:'botanicals',  img:'assets/natures-legacy.jpg'},
+    {n:'Moonlit Journey',      p:41,  c:'prints',    col:'mystical',    img:'assets/moonlit-journey.jpg'},
+    {n:'Girl of Fire',         p:38,  c:'prints',    col:'mystical',    img:'assets/girl-of-fire.jpg'},
+    {n:'The Fool — Tarot',     p:26,  c:'prints',    col:'tarot',       img:'assets/the-fool.jpg'},
+    {n:'Into the Unseen',      p:38,  c:'prints',    col:'mystical',    img:'assets/into-the-unseen.jpg'},
+    {n:'City of Dreams',       p:38,  c:'prints',    col:'wanderlust',  img:'assets/city-of-dreams.jpg'},
+    {n:'Legacy of Persia',     p:38,  c:'prints',    col:'wanderlust',  img:'assets/legacy-of-persia.jpg'},
+    {n:'Dance of Freedom',     p:22,  c:'prints',    col:'mystical',    img:'assets/dance-of-freedom.jpg'},
+    {n:'Roaring Spirit',       p:48,  c:'prints',    col:'mystical',    img:'assets/roaring-spirit.jpg'},
+    {n:'The Foundation',       p:28,  c:'prints',    col:'botanicals',  img:'assets/the-foundation.jpg'},
+    {n:'Moonlit Nomad',        p:28,  c:'prints',    col:'wanderlust',  img:'assets/moonlit-nomad.jpg'},
+    {n:'Girl of Fire — Phone Case', p:32, c:'products', col:'mystical',   t:'phone-case', img:'assets/girl-of-fire.jpg'},
+    {n:'Moonlit Journey — Mug',     p:24, c:'products', col:'mystical',   t:'mug',        img:'assets/moonlit-journey.jpg'},
+    {n:'Legacy of Persia — Tote',   p:28, c:'products', col:'wanderlust', t:'tote',       img:'assets/legacy-of-persia.jpg'},
+    {n:'Roaring Spirit — Tee',      p:34, c:'products', col:'mystical',   t:'apparel',    img:'assets/roaring-spirit.jpg'}
   ];
   const TAG = {originals:'Original', prints:'Print', products:'Product'};
 
@@ -166,7 +165,7 @@
     const grid = document.getElementById('grid');
     grid.innerHTML = list.length ? list.map(i => `
       <a class="card" href="#">
-        <div class="arch" role="img" aria-label="${i.n}"><div class="ph"><span>artwork</span></div></div>
+        <div class="arch"><img class="art-img" src="${i.img}" alt="${i.n}"></div>
         <span class="tag">${TAG[i.c]}</span>
         <h4>${i.n}</h4>
         <div class="price">$${i.p}</div>

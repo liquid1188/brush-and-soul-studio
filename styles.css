@@ -252,3 +252,11 @@ footer .brand{color:var(--parchment)}
 .type-group{display:none}
 .type-group.show{display:flex}
 @media(max-width:900px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* real imagery */
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{height:40px;width:auto;border-radius:8px;display:block}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.arch img{display:block}
+.arch .art-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:9px;border:1.5px solid rgba(42,27,46,.10)}
+.arch.fill .art-img{aspect-ratio:auto;width:100%;height:100%;object-fit:cover;border:none;border-radius:0}
