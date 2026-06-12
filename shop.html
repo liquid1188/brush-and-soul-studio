@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Brush &amp; Soul Studio</title>
+<meta name="description" content="Browse original paintings, fine-art prints, and products by Caroline. Filter by collection, type, and price.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Brush and Soul Studio home">
+      Brush &amp; Soul
+      <small>studio · handmade art</small>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="menu">
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="commissions.html">Commissions</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="commissions.html#request">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="navbtns">
+      <a href="#" class="icon-cart" aria-label="Cart">&#8853;</a>
+      <button class="burger" aria-label="Open menu" onclick="document.querySelector('.menu').style.display='flex'">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">bring a piece home</span>
+      <h1>The collection</h1>
+      <p>Originals, prints, and products &mdash; rooted in nature, carried by color.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="wrap">
+
+      <div class="shop-bar">
+        <div class="filter-group">
+          <span class="lbl">Category</span>
+          <div class="seg" id="f-category" role="group" aria-label="Category" style="gap:.5rem">
+            <button class="chip" data-v="all" aria-pressed="true">All</button>
+            <button class="chip" data-v="originals" aria-pressed="false">Originals</button>
+            <button class="chip" data-v="prints" aria-pressed="false">Prints</button>
+            <button class="chip" data-v="products" aria-pressed="false">Products</button>
+          </div>
+        </div>
+
+        <div class="filter-group type-group" id="type-wrap">
+          <span class="lbl">Type</span>
+          <div class="seg" id="f-type" role="group" aria-label="Product type" style="gap:.5rem">
+            <button class="chip" data-v="all" aria-pressed="true">All</button>
+            <button class="chip" data-v="phone-case" aria-pressed="false">Phone cases</button>
+            <button class="chip" data-v="mug" aria-pressed="false">Mugs</button>
+            <button class="chip" data-v="apparel" aria-pressed="false">Apparel</button>
+            <button class="chip" data-v="tote" aria-pressed="false">Totes</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="lbl">Collection</span>
+          <div class="seg" id="f-collection" role="group" aria-label="Collection" style="gap:.5rem">
+            <button class="chip" data-v="all" aria-pressed="true">All</button>
+            <button class="chip" data-v="wanderlust" aria-pressed="false">Wanderlust</button>
+            <button class="chip" data-v="mystical" aria-pressed="false">Mystical</button>
+            <button class="chip" data-v="tarot" aria-pressed="false">Tarot</button>
+            <button class="chip" data-v="botanicals" aria-pressed="false">Botanicals</button>
+          </div>
+        </div>
+
+        <div class="shop-controls">
+          <div class="price-control">
+            <span class="lbl">Max price</span>
+            <input type="range" id="f-price" min="20" max="700" step="1" value="700">
+            <span class="val" id="price-val">Any</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span class="results-meta" id="results-meta"></span>
+            <select class="shop-sort" id="f-sort" aria-label="Sort">
+              <option value="featured">Featured</option>
+              <option value="low">Price: low to high</option>
+              <option value="high">Price: high to low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop-grid" id="grid"></div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="max-width:260px">
+        <div class="brand" style="font-family:var(--display);font-size:1.3rem;font-weight:600">Brush &amp; Soul Studio</div>
+        <p style="margin-top:.6rem">Handmade art rooted in nature, color, and the feminine.</p>
+      </div>
+      <div class="foot-col"><h5>Shop</h5><a href="shop.html?category=originals">Originals</a><a href="shop.html?category=prints">Prints</a><a href="shop.html?category=products">Products</a></div>
+      <div class="foot-col"><h5>Studio</h5><a href="commissions.html">Commissions</a><a href="index.html#events">Events</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h5>Follow</h5><a href="#">Instagram</a><a href="#">Etsy</a><a href="#">Newsletter</a></div>
+    </div>
+    <div class="foot-bottom">&copy; <span id="yr"></span> Brush &amp; Soul Studio &middot; Caroline Likoudis</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Seeded from Caroline's live catalog. Real images + full catalog drop in
+     when products are published from Printify; originals are added in admin. */
+  const ITEMS = [
+    {n:'Persian Hospitality', p:600, c:'originals', col:'wanderlust'},
+    {n:'Natures Legacy',       p:700, c:'originals', col:'botanicals'},
+    {n:'Moonlit Journey',      p:41,  c:'prints',    col:'mystical'},
+    {n:'Girl of Fire',         p:38,  c:'prints',    col:'mystical'},
+    {n:'The Fool \u2014 Tarot',p:26,  c:'prints',    col:'tarot'},
+    {n:'Into the Unseen',      p:38,  c:'prints',    col:'mystical'},
+    {n:'City of Dreams',       p:38,  c:'prints',    col:'wanderlust'},
+    {n:'Legacy of Persia',     p:38,  c:'prints',    col:'wanderlust'},
+    {n:'Dance of Freedom',     p:22,  c:'prints',    col:'mystical'},
+    {n:'Roaring Spirit',       p:48,  c:'prints',    col:'mystical'},
+    {n:'The Foundation',       p:28,  c:'prints',    col:'botanicals'},
+    {n:'Moonlit Nomad',        p:28,  c:'prints',    col:'wanderlust'},
+    {n:'Girl of Fire \u2014 Phone Case', p:32, c:'products', col:'mystical',   t:'phone-case'},
+    {n:'Moonlit Journey \u2014 Mug',     p:24, c:'products', col:'mystical',   t:'mug'},
+    {n:'Legacy of Persia \u2014 Tote',   p:28, c:'products', col:'wanderlust', t:'tote'},
+    {n:'Roaring Spirit \u2014 Tee',      p:34, c:'products', col:'mystical',   t:'apparel'}
+  ];
+  const TAG = {originals:'Original', prints:'Print', products:'Product'};
+
+  const state = {category:'all', type:'all', collection:'all', price:700, sort:'featured'};
+
+  function syncChips(id, val){
+    document.querySelectorAll('#'+id+' .chip').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.v === val ? 'true' : 'false'));
+  }
+
+  function render(){
+    document.getElementById('type-wrap').classList.toggle('show', state.category === 'products');
+
+    let list = ITEMS.filter(i =>
+      (state.category === 'all' || i.c === state.category) &&
+      (state.collection === 'all' || i.col === state.collection) &&
+      (state.category !== 'products' || state.type === 'all' || i.t === state.type) &&
+      (i.p <= state.price)
+    );
+    if(state.sort === 'low')  list.sort((a,b) => a.p - b.p);
+    if(state.sort === 'high') list.sort((a,b) => b.p - a.p);
+
+    const grid = document.getElementById('grid');
+    grid.innerHTML = list.length ? list.map(i => `
+      <a class="card" href="#">
+        <div class="arch" role="img" aria-label="${i.n}"><div class="ph"><span>artwork</span></div></div>
+        <span class="tag">${TAG[i.c]}</span>
+        <h4>${i.n}</h4>
+        <div class="price">$${i.p}</div>
+      </a>`).join('') : '<p class="shop-empty">No pieces match yet &mdash; try widening your filters.</p>';
+
+    document.getElementById('results-meta').textContent =
+      list.length + (list.length === 1 ? ' piece' : ' pieces');
+  }
+
+  function wireChips(id, key){
+    document.getElementById(id).addEventListener('click', e => {
+      const b = e.target.closest('.chip'); if(!b) return;
+      state[key] = b.dataset.v;
+      if(key === 'category') { state.type = 'all'; syncChips('f-type','all'); }
+      syncChips(id, b.dataset.v);
+      render();
+    });
+  }
+  wireChips('f-category','category');
+  wireChips('f-type','type');
+  wireChips('f-collection','collection');
+
+  const price = document.getElementById('f-price');
+  price.addEventListener('input', () => {
+    state.price = +price.value;
+    document.getElementById('price-val').textContent =
+      state.price >= 700 ? 'Any' : '$' + state.price;
+    render();
+  });
+  document.getElementById('f-sort').addEventListener('change', e => {
+    state.sort = e.target.value; render();
+  });
+
+  /* preselect from URL, e.g. shop.html?category=prints&collection=tarot */
+  const q = new URLSearchParams(location.search);
+  ['category','collection','type'].forEach(k => {
+    const v = q.get(k);
+    if(v){ state[k] = v; syncChips('f-' + k, v); }
+  });
+  render();
+</script>
+</body>
+</html>
