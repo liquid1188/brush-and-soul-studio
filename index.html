@@ -196,10 +196,11 @@
     <div class="wrap reveal">
       <h2>Live a little more beautifully</h2>
       <p>New work, studio notes, and first looks at collections — gently, never often.</p>
-      <form onsubmit="event.preventDefault();this.reset();this.querySelector('span').textContent='Thank you — you\'re on the list.'">
-        <input type="email" required placeholder="Your email" aria-label="Your email">
+      <form id="news-form" onsubmit="bsSubscribe(event)">
+        <input id="news-name" type="text" placeholder="Your name" aria-label="Your name">
+        <input id="news-email" type="email" required placeholder="Your email" aria-label="Your email">
         <button class="btn btn-primary" type="submit">Join</button>
-        <span style="flex-basis:100%;font-size:.9rem;color:rgba(248,241,230,.85);margin-top:.4rem"></span>
+        <span id="news-status" style="flex-basis:100%;font-size:.9rem;color:rgba(248,241,230,.85);margin-top:.4rem"></span>
       </form>
     </div>
   </section>
@@ -223,7 +224,7 @@
       </div>
       <div class="foot-col">
         <h5>Follow</h5>
-        <a href="#">Instagram</a><a href="#">Etsy</a><a href="#">Newsletter</a>
+        <a href="https://www.instagram.com/carolinelikescolor" target="_blank" rel="noopener">Instagram</a><a href="https://www.etsy.com/shop/Likoudesigns" target="_blank" rel="noopener">Etsy</a><a href="index.html#contact">Newsletter</a>
       </div>
     </div>
     <div class="foot-bottom">© <span id="yr"></span> Brush &amp; Soul Studio · Caroline Likoudis</div>
@@ -234,6 +235,15 @@
   document.getElementById('yr').textContent=new Date().getFullYear();
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+const SUBSCRIBE_ENDPOINT='https://brush-and-soul-subscribe.vercel.app/api/subscribe';
+function bsSubscribe(e){e.preventDefault();var f=e.target,s=document.getElementById('news-status');
+  var name=document.getElementById('news-name').value.trim();var email=document.getElementById('news-email').value.trim();
+  s.textContent='Joining\u2026';
+  fetch(SUBSCRIBE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email})})
+   .then(function(r){if(!r.ok)throw 0;s.textContent="Thank you \u2014 you're on the list.";f.reset();})
+   .catch(function(){s.textContent="Hmm, that didn't go through. Please try again.";});}
 </script>
 </body>
 </html>
